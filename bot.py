@@ -8,6 +8,7 @@ from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 api_key = st.secrets["HUGGINGFACEHUB_API_TOKEN"] 
 
 # Sidebar - Model Selection
+st.set_page_config(layout="wide")
 st.sidebar.title("🤖 AI Model Selection")
 ai_input = st.sidebar.selectbox(
     "Select your AI model",
@@ -32,6 +33,8 @@ if "chat_history" not in st.session_state:
 
 st.title("💬 AI Chatbot")
 st.write("Chat with your selected AI model in real time!")
+st.write("Select you AI Model from Top-Left side!")
+
 
 # User input
 user_input = st.chat_input("Type your message here...")
@@ -52,4 +55,5 @@ for msg in st.session_state.chat_history:
         st.chat_message("user").markdown(msg.content)
     elif isinstance(msg, AIMessage):
         st.chat_message("assistant").markdown(msg.content)
+
 
