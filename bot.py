@@ -1,12 +1,11 @@
 # chatbot_streamlit.py
 
 import streamlit as st
-from dotenv import load_dotenv
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 
-# Load API keys
-load_dotenv()
+# Load API key
+api_key = st.secrets["HUGGINGFACEHUB_API_TOKEN"] 
 
 # Sidebar - Model Selection
 st.sidebar.title("🤖 AI Model Selection")
@@ -53,3 +52,4 @@ for msg in st.session_state.chat_history:
         st.chat_message("user").markdown(msg.content)
     elif isinstance(msg, AIMessage):
         st.chat_message("assistant").markdown(msg.content)
+
